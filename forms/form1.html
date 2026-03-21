@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Interés - Lobees CRM</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h1>¡Hola!</h1>
+        <p>Vimos que te registraste recientemente. ¿Sigues interesado en agendar una breve reunión con nuestro equipo de Lobees para mostrarte cómo podemos ayudarte?</p>
+        
+        <!-- El action se actualizará dinámicamente mediante JS para incluir el ID del lead -->
+        <form id="interestForm" method="POST" action="/lead/unknown/form1">
+            <input type="hidden" name="interested" id="interestValue" value="yes">
+            
+            <button type="submit" class="btn" onclick="document.getElementById('interestValue').value='yes'">
+                Sí, sigo interesado
+            </button>
+            
+            <button type="submit" class="btn btn-secondary" onclick="document.getElementById('interestValue').value='no'">
+                No por ahora, gracias
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Extraer el ID del lead de la URL
+        const pathSegments = window.location.pathname.split('/');
+        const leadIdIndex = pathSegments.indexOf('lead') + 1;
+        
+        if (leadIdIndex > 0 && leadIdIndex < pathSegments.length) {
+            const leadId = pathSegments[leadIdIndex];
+            document.getElementById('interestForm').action = `/lead/${leadId}/form1`;
+        }
+    </script>
+</body>
+</html>

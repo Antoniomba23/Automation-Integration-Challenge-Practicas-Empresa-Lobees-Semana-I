@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario Preferido - Lobees CRM</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h1>¡Genial!</h1>
+        <p>Por favor, indícanos a qué hora te vendría mejor que nos pusiéramos en contacto contigo para nuestra reunión.</p>
+        
+        <form id="timeForm" method="POST" action="/lead/unknown/form2">
+            <div class="form-group">
+                <label for="preferredTime">Hora preferida (Formato 24h):</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+            </div>
+            
+            <button type="submit" class="btn">
+                Siguiente Paso
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Extraer el ID del lead de la URL
+        const pathSegments = window.location.pathname.split('/');
+        const leadIdIndex = pathSegments.indexOf('lead') + 1;
+        
+        if (leadIdIndex > 0 && leadIdIndex < pathSegments.length) {
+            const leadId = pathSegments[leadIdIndex];
+            document.getElementById('timeForm').action = `/lead/${leadId}/form2`;
+        }
+    </script>
+</body>
+</html>

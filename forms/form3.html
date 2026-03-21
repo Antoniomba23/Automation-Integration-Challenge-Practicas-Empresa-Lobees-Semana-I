@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación Final - Lobees CRM</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Último paso</h1>
+        <p>Para agilizar la comunicación y enviarte el enlace de la reunión, ¿por qué canal prefieres que te contactemos?</p>
+        
+        <form id="contactForm" method="POST" action="/lead/unknown/form3">
+            <div class="form-group">
+                <label for="contactChannel">Canal de comunicación preferido:</label>
+                <select id="contactChannel" name="contactChannel" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Email">Correo Electrónico (Email)</option>
+                    <option value="Llamada">Llamada Telefónica</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">
+                Confirmar Reunión
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Extraer el ID del lead de la URL
+        const pathSegments = window.location.pathname.split('/');
+        const leadIdIndex = pathSegments.indexOf('lead') + 1;
+        
+        if (leadIdIndex > 0 && leadIdIndex < pathSegments.length) {
+            const leadId = pathSegments[leadIdIndex];
+            document.getElementById('contactForm').action = `/lead/${leadId}/form3`;
+        }
+    </script>
+</body>
+</html>
