@@ -1,0 +1,269 @@
+{
+  "name": "Automatización Lobees CRM - Tareas y Formularios Triples",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form1",
+        "options": {}
+      },
+      "id": "webhook-form1",
+      "name": "Webhook Form1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        200
+      ],
+      "webhookId": "2c6e64d7-ea7f-44a5-9276-880fa35fb291"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.lobees.com/api/project/addtasklog?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudG9uaW9tYmEyNzhAZ21haWwuY29tIiwidXNlcmlkIjoiNjliN2ZhNzAyMzQzZWI4YjY4NGJhMTIzIiwiZWNvc3lzdGVtaWQiOiI2NGI0ZTk3MzQwMmU5ODNkY2M0Y2IwYzUiLCJlY29zeXN0ZW1zbHVnIjoiTE9CRUVTIiwicm9sZXNsdWciOiJVU0VSIiwiaWF0IjoxNzczNjY0OTE3fQ.FUmVmodI7nJHbyH1wEKDccE_CdiVpFfpWor3D37dOU0",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "projecttask",
+              "value": "={{ $json.body.leadId }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.body.interested ? 'Respuesta Formulario 1: SÍ está interesado en una reunión.' : 'Respuesta Formulario 1: NO está interesado en una reunión.' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-crm-form1",
+      "name": "Actualizar Tarea - Form1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form2",
+        "options": {}
+      },
+      "id": "webhook-form2",
+      "name": "Webhook Form2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        400
+      ],
+      "webhookId": "9b1cc0e1-fb11-40cf-a6e5-22d765870b22"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.lobees.com/api/project/addtasklog?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudG9uaW9tYmEyNzhAZ21haWwuY29tIiwidXNlcmlkIjoiNjliN2ZhNzAyMzQzZWI4YjY4NGJhMTIzIiwiZWNvc3lzdGVtaWQiOiI2NGI0ZTk3MzQwMmU5ODNkY2M0Y2IwYzUiLCJlY29zeXN0ZW1zbHVnIjoiTE9CRUVTIiwicm9sZXNsdWciOiJVU0VSIiwiaWF0IjoxNzczNjY0OTE3fQ.FUmVmodI7nJHbyH1wEKDccE_CdiVpFfpWor3D37dOU0",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "projecttask",
+              "value": "={{ $json.body.leadId }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.body.preferredTime ? 'Actualización Formulario 2 -> Hora preferida de reunión: ' + $json.body.preferredTime : '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-crm-form2",
+      "name": "Actualizar Tarea - Form2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form3",
+        "options": {}
+      },
+      "id": "webhook-form3",
+      "name": "Webhook Form3",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        600
+      ],
+      "webhookId": "fbac8d31-4ebd-4dff-bbc8-28fffc0cf3f1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.lobees.com/api/project/addtasklog?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudG9uaW9tYmEyNzhAZ21haWwuY29tIiwidXNlcmlkIjoiNjliN2ZhNzAyMzQzZWI4YjY4NGJhMTIzIiwiZWNvc3lzdGVtaWQiOiI2NGI0ZTk3MzQwMmU5ODNkY2M0Y2IwYzUiLCJlY29zeXN0ZW1zbHVnIjoiTE9CRUVTIiwicm9sZXNsdWciOiJVU0VSIiwiaWF0IjoxNzczNjY0OTE3fQ.FUmVmodI7nJHbyH1wEKDccE_CdiVpFfpWor3D37dOU0",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "projecttask",
+              "value": "={{ $json.body.leadId }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.body.contactChannel ? 'Actualización Formulario 3 -> Canal preferido de confirmación: ' + $json.body.contactChannel : '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-crm-form3",
+      "name": "Actualizar Tarea - Form3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "value": 15
+            }
+          ]
+        }
+      },
+      "id": "trigger-polling",
+      "name": "Cron - Buscar Tareas",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.lobees.com/api/project/updatetaskdashboard/{{ $json.body.leadId }}?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudG9uaW9tYmEyNzhAZ21haWwuY29tIiwidXNlcmlkIjoiNjliN2ZhNzAyMzQzZWI4YjY4NGJhMTIzIiwiZWNvc3lzdGVtaWQiOiI2NGI0ZTk3MzQwMmU5ODNkY2M0Y2IwYzUiLCJlY29zeXN0ZW1zbHVnIjoiTE9CRUVTIiwicm9sZXNsdWciOiJVU0VSIiwiaWF0IjoxNzczNjY0OTE3fQ.FUmVmodI7nJHbyH1wEKDccE_CdiVpFfpWor3D37dOU0",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "processed_leads",
+              "value": "1"
+            },
+            {
+              "name": "form1_completed",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-dashboard",
+      "name": "Actualizar Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        600,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.lobees.com/api/project/updatetask/{{ $node[\"Webhook Form3\"].json.body.leadId }}?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudG9uaW9tYmEyNzhAZ21haWwuY29tIiwidXNlcmlkIjoiNjliN2ZhNzAyMzQzZWI4YjY4NGJhMTIzIiwiZWNvc3lzdGVtaWQiOiI2NGI0ZTk3MzQwMmU5ODNkY2M0Y2IwYzUiLCJlY29zeXN0ZW1zbHVnIjoiTE9CRUVTIiwicm9sZXNsdWciOiJVU0VSIiwiaWF0IjoxNzczNjY0OTE3fQ.FUmVmodI7nJHbyH1wEKDccE_CdiVpFfpWor3D37dOU0",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "status",
+              "value": "64bc089849553556f8fbb30c"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "finish-task",
+      "name": "Marcar Tarea como Finalizada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        600,
+        600
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Form1": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Tarea - Form1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar Tarea - Form1": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Form2": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Tarea - Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Form3": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Tarea - Form3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar Tarea - Form3": {
+      "main": [
+        [
+          {
+            "node": "Marcar Tarea como Finalizada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}
